@@ -1,0 +1,59 @@
+# This is an example of BPTI loop modeling (residue 12-16)
+# --------------------------------------------------------
+
+# ATTENTION: Here is just the outline of the whole computational procedure, 
+# detailed computation should be managed based on local systems.  Lines 
+# with "#" ahead are explanations of the main steps, following "!" are 
+# short explanations of the unix shell commands.
+
+
+# i.	Retrieve the crystal structure of 4PTI, 4pti.ent, from the 
+#	Protein Data Bank (PDB).
+
+		 cp CDROM/4pti.ent .
+
+# ii.	Generate the initial crystal structure.
+#	a) Set all titrable residues to neutral ones in file 4pti.ent,
+#	   ARG - ARGN, ASP - ASPH, GLU - GLUH, LYS - LYSN,
+#	   then minimize the protein structure in QUANTA4.0/CHARMm22
+
+		 charmm22 < 4pti.inp >4pti.out
+
+#	b) Generate a stretch loop segment in CHARMm. One more residue ALA
+#	   was appended after the C terminal in order to make the
+#	   the C terminal residue have correct peptide bond conformation
+#	   ready to be used in terminal constraint. The appended ALA will
+#	   be removed in step d). 
+
+		 charmm22 < loop.inp >loop.out
+
+#	c) Remove polor hydrogens from the above output coordinates files,
+#	   i.e., transfer 4ptih.pdb, looph.pdb to 4pti.pdb and loop.pdb
+#	   respectively. Be sure to delete two head lines of each 
+#	   PDB file before tranference.
+
+		 RmH <4ptih.pdb >4pti.pdb	! A FORTRAN program to 
+						  remove hydrogen atoms
+		 RmH <looph.pdb >loop.pdb
+
+#	d) Replace the loop segment in crystal structure with the stretch
+#	   peptide loop.pdb generated in step b).
+
+		 sed -n '94,124 \!w tmp0' 4pti.pdb   ! Remove the loop segment
+		 sed -n '32,$ \!w tmp1' loop.pdb     ! Remove the C terminal
+		 sed 's/LYS /LYSN/g' tmp1 >tmp2     ! Neutralize the titrable
+						      residue in loop
+		 sed '93 r tmp2' tmp0 > INNAME	    ! Add the stretch peptide
+
+# iii.	Run program LPSA to generate the candidate conformation
+
+		 ../src/lpsa
+
+# iv.	Minimize the resultant conformation and calculate the RMSD from 
+#	crystal structure
+
+		 sed -n '1,/SAVED/ \!w tmp0' OUNAME	! Pick up the coordinate
+		 charmm22 <4ptim.inp> 4ptim.out      ! Minimize the loop
+		 sed -n '1,2 \!w tmp5' lpsam.pdb
+		 RmH <tmp5 > tmp6
+        	 4pticp <tmp6		! Fortran program to calculate the RMSD

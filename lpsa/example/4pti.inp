@@ -1,0 +1,64 @@
+* ...
+* Modeling protein loop, 4PTI 12-16
+* Written by Dr. Hongyu Zhang, Molecular Design Lab, Peking University
+* ...
+*
+! Open and read polar hydrogen amino acid topology file (binary)
+
+BOML -1 
+
+OPEN READ UNIT 11 FILE NAME "$CHM_DATA/AMINO.BIN"
+READ RTF UNIT 11 FILE
+CLOSE UNIT 11
+
+! Open and read parameter file (binary)
+
+OPEN READ UNIT 12 FILE NAME "$CHM_DATA/PARM.BIN"
+READ PARAMETERS UNIT 12 FILE
+CLOSE UNIT 12
+
+! Read the sequence from the protein data bank file
+
+OPEN READ UNIT 13 CARD NAME 4pti.ent
+READ SEQUENCE PDB UNIT 13
+
+! Generate segment and set up internal coordinate table
+
+GENERATE 4PTI SETUP
+
+! Rewind the protein data bank file for reading of coordinates
+
+REWIND UNIT 13
+
+! Read PDB coordinates
+
+READ COORDINATES PDB UNIT 13
+CLOSE UNIT 13
+
+! Construct hydrogen positions
+
+HBUILD
+
+! If necessary, any additional missing coordinates may be
+! placed using the following commands
+
+IC FILL PRESERVE
+IC PARAMETERS
+IC BUILD
+
+! Start minimization
+
+PATCH DISU 4PTI 5 4PTI 55 SETUP   
+PATCH DISU 4PTI 14 4PTI 38 SETUP
+PATCH DISU 4PTI 30 4PTI 51 SETUP
+MINI SD NSTEP 200 NPRINT 50 STEP 0.1
+MINI CONJ NSTEP 200 NPRINT 50 STEP 0.01
+MINI ABNR nstep 800 nprint 50 step 0.05
+
+open write card unit 9 name 4ptih.pdb
+write coor pdb unit 9
+* test after mini
+*
+
+stop
+

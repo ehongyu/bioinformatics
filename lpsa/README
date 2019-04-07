@@ -1,0 +1,76 @@
+============================================================================
+
+		    #       #####    ####     ##
+		    #       #    #  #        #  #
+ 		    #       #    #   ####   #    #
+ 		    #       #####        #  ######
+ 		    #       #       #    #  #    #
+ 		    ######  #        ####   #    #
+
+
+      modeling Loops of Proteins by Simulated Annealing method
+
+		     WRITTEN BY DR. HONGYU ZHANG
+
+		     CARB, University of Maryland
+
+		  	   August, 1998 		      
+
+			   VERSION 1.0b
+
+============================================================================
+
+This is a short introduction to protein loops modeling program LPSA. For 
+theory, please refer "A Fast and Efficient Program for Modeling Protein loops", 
+Zhang H., Lai L., Wang L., Han Y. and Tang Y.  Biopolymers, Vol.41, P61-72, 
+1997 
+
+--------------------------------------------------------------------
+
+Major revision to Version 1.0a.
+
+. After setting up a big MAXATOM number, the excutable code can be used to 
+  model different proteins without re-compiling.
+
+
+--------------------------------------------------------------------
+
+Directory src/ contains the C++ code of LPSA. An example of BPTI loop 
+modeling is in directory example/.
+
+The I/O file of LPSA is as follows,
+
+INNAME
+The input PDB coordinates of both protein atoms and loop atoms, where the
+protein atoms is in the same positions as in crystal structure while loop 
+segment is in strech conformation.
+
+RANDOM
+Random seeds of Monte-Carlo algorithm.
+
+LOOPSE
+Start and End residue positions of protein loop segment; the Conformational 
+Search Number of Each Cycle (CSNEC).
+
+TORTEMP
+Template to generate the topology of torsion angles of each of 20 amino 
+acid residues.
+
+GRID_PARA
+Parameter file for grid-mapping method. It is generated in the first run of
+LPSA, and then can be read in the following runs, which will save us from
+regenerating this file.
+
+=========================================================================
+
+This program is free to use and distribute. If either the program or 
+ideas from its code are used in a publication, it is asked that the 
+following reference be cited:
+
+"A Fast and Efficient Program for Modeling Protein loops",
+Zhang H., Lai L., Wang L., Han Y. and Tang Y.  
+Biopolymers, Vol.41, P61-72, 1997
+
+
+For any questions, bugs or comments, please contact
+hyzhang@carb.nist.gov or

@@ -1,0 +1,49 @@
+* ...
+* Copyright (c) 1987   Polygen Corporation   All Rights Reserved
+* ...
+* ...
+* Chapter Two:  Model Building
+* Example Two:  Building Glucagon from PDB coordinates
+* ...
+* This CHARMm command file builds glucagon from protein data bank
+* coordinates.
+* ... 
+*
+
+BOML -1 
+
+OPEN READ UNIT 11 FILE NAME $CHM_DATA/AMINO.BIN
+READ RTF UNIT 11 FILE
+CLOSE UNIT 11
+
+OPEN READ UNIT 12 FILE NAME $CHM_DATA/PARM.BIN
+READ PARAMETERS UNIT 12 FILE
+CLOSE UNIT 12
+
+OPEN READ UNIT 13 CARD NAME lpsa.pdb
+READ SEQUENCE PDB UNIT 13
+
+GENERATE 4PTI SETUP
+
+REWIND UNIT 13
+
+READ COORDINATES PDB UNIT 13
+CLOSE UNIT 13
+
+HBUILD
+IC FILL PRESERVE
+IC PARAMETERS
+IC BUILD
+
+CONS FIX SELE RESI 1:11 .OR. RESI 17:58 END
+PATCH DISU 4PTI 14 4PTI 38 SETUP
+MINI SD NSTEP 400 NPRINT 50 STEP 0.1
+MINI CONJ NSTEP 400 NPRINT 50 STEP 0.01
+MINI ABNR nstep 400 nprint 50 step 0.05
+
+open write card unit 9 name lpsam.pdb
+write coor pdb unit 9
+* test after mini
+*
+
+stop

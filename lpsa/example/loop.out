@@ -1,0 +1,157 @@
+/nfs/focus/release/generic/usr/msi/quanta96/exec/charmm cmd='/nfs/focus/release/generic/usr/msi/quanta96/exec/mstart.exe /nfs/focus/release/generic/usr/msi/quanta96/exec/charmm.exe '
+1
+                 Chemistry at HARvard Macromolecular Mechanics
+                   (CHARMm) - Version 23.2 Revision: 96.0501                   
+       Copyright(c) 1984,1992  President and Fellows of Harvard College
+                              All Rights Reserved
+      Current operating system: IRIX64-IP30 6.4 @ tabasco.carb.nist.gov
+                 Created on  7/ 9/97 at 19:14: 4 by user: hyzhang     
+
+            Maximum number of ATOMS:     30000, and RESidues:       30000
+            Current HEAP size:         2048000, and STACK size:    300000
+
+ RDTITL>  
+ RDTITL> No title read.
+
+      ***** LEVEL  1 WARNING FROM <RDTITL> *****
+      ***** Title expected.
+      ******************************************
+      BOMLEV (  0) IS NOT REACHED. WRNLEV IS  5
+
+  
+ CHARMM>     
+  
+ CHARMM>     
+  
+ CHARMM>    BOML -1
+  
+ CHARMM>     
+  
+ CHARMM>    OPEN READ UNIT 11 FILE NAME "$CHM_DATA/AMINO.BIN"
+ VOPEN> Attempting to open-READ   UNIT= 11 as UNFORMATTED file ::/nfs/focus/release/generic/usr/msi/quanta96/data/AMINO.BIN::
+ OPNLGU> Unit 11 opened for READONLY access to /nfs/focus/release/generic/usr/msi/quanta96/data/AMINO.BIN
+  
+ CHARMM>    READ RTF UNIT 11 FILE
+ MAINIO> Residue topology file being read from unit  11.
+ TITLE>  * ...
+ TITLE>  * TOPOLOGY FILE FOR CHARMM VERSION 22   (POLAR HYDROGENS ONLY)
+ TITLE>  * ...
+ TITLE>  * ...
+ TITLE>  * COPYRIGHT (C) 1986, 1987, 1988, 1989, 1990, 1991, 1992
+ TITLE>  * POLYGEN / MOLECULAR SIMULATIONS INCORPORATED
+ TITLE>  * CONFIDENTIAL AND PROPRIETARY: ALL RIGHTS RESERVED
+ TITLE>  * ...
+ TITLE>  * INCLUDES TOPOLOGY DEFINITIONS FOR THE TWENTY NATURALLY OCCURRING
+ TITLE>  * AMINO ACIDS, SOME COMMONLY USED PATCHES, AND WATER.
+ TITLE>  * HYDROGENS ARE ONLY SPECIFIED FOR POLAR ATOMS (SUCH AS N AND O).
+ TITLE>  * ...
+ TITLE>  * LATEST CREATION OF BINARY FILE:  $DATE: 94/12/27 17:38:27 $
+ TITLE>  * ...
+ TITLE>  *  DATE:     1/ 5/96     16:47:54      CREATED BY USER: quanta
+ TITLE>  *
+  
+ CHARMM>    CLOSE UNIT 11
+ VCLOSE: Closing unit   11 with status "KEEP"
+  
+ CHARMM>     
+  
+ CHARMM>    OPEN READ UNIT 12 FILE NAME "$CHM_DATA/PARM.BIN"
+ VOPEN> Attempting to open-READ   UNIT= 12 as UNFORMATTED file ::/nfs/focus/release/generic/usr/msi/quanta96/data/PARM.BIN::
+ OPNLGU> Unit 12 opened for READONLY access to /nfs/focus/release/generic/usr/msi/quanta96/data/PARM.BIN
+  
+ CHARMM>    READ PARAMETERS UNIT 12 FILE
+
+          PARAMETER FILE BEING READ FROM UNIT 12
+ TITLE>  * ...
+ TITLE>  * PARAMETER FILE FOR CHARMM VERSION 22
+ TITLE>  * ...
+ TITLE>  * INCLUDES PARAMETERS FOR BOTH POLAR AND ALL HYDROGEN TOPOLOGY FILES
+ TITLE>  * ...
+ TITLE>  * COPYRIGHT (C) 1986, 1987, 1988, 1989, 1990, 1991, 1992
+ TITLE>  * POLYGEN / MOLECULAR SIMULATIONS INCORPORATED
+ TITLE>  * CONFIDENTIAL AND PROPRIETARY: ALL RIGHTS RESERVED
+ TITLE>  * ...
+ TITLE>  * DIHEDRALS ARE PRESUMED TO BE AUTOMATICALLY GENERATED AND
+ TITLE>  * SHOULD BE TOTALLY SPECIFIED, I.E. AMIDE BONDS HAVE 4 DIHEDRAL
+ TITLE>  * TERMS AND ETHANE HAS 9 DIHEDRAL TERMS. CHECK THE CHARMM PSF IF NECESSARY.
+ TITLE>  * THIS DOES NOT NECESSARILY IMPLY MULTIPLE PERIODICITY.
+ TITLE>  * ...
+ TITLE>  * LATEST CREATION OF BINARY FILE:  $DATE: 94/12/27 17:38:27 $
+ TITLE>  * ...
+ TITLE>  *  DATE:     1/ 5/96     16:47:56      CREATED BY USER: quanta
+ TITLE>  *
+ PARMIO> NONBOND, HBOND lists and IMAGE atoms cleared.
+  
+ CHARMM>    CLOSE UNIT 12
+ VCLOSE: Closing unit   12 with status "KEEP"
+  
+ CHARMM>     
+  
+ CHARMM>    READ SEQUENCE CARD
+ MAINIO> Sequence information being read from unit   5.
+ RDTITL> 8
+ RDTITL> No title read.
+  
+ SEQRDR>    8
+  
+ SEQRDR>    LEU SER ARG LEU ALA GLN GLU ARG
+
+          RESIDUE SEQUENCE --     8 RESIDUES
+          LEU SER ARG LEU ALA GLN GLU ARG 
+ ***** Message from SEQRDR ***** THE SYSTEM CONTAINS  1 TITRATABLE GROUPS
+ THE USER MUST PREDETERMINE THE PROTONATION STATE THROUGH THE SEQUENCE AND RTF
+ HIS -  0  ASP -  0  GLU -  1  LYS -  0  TYR -  0
+  
+ CHARMM>     
+  
+ CHARMM>    GENERATE PEPTIDE SETUP
+ THE PATCH 'NTER  ' WILL BE USED FOR THE FIRST RESIDUE
+ THE PATCH 'CTER  ' WILL BE USED FOR THE LAST  RESIDUE
+ GENPSF> Segment   1 has been generated. Its identifier is PEPT.
+ PSFSUM> PSF modified: NONBOND lists and IMAGE atoms cleared.
+ PSFSUM> Summary of the structure file counters :
+         Number of segments      =        1   Number of residues   =        8
+         Number of atoms         =       91   Number of groups     =       33
+         Number of bonds         =       90   Number of angles     =      128
+         Number of dihedrals     =      155   Number of impropers  =       36
+         Number of HB acceptors  =       13   Number of HB donors  =       23
+         Number of NB exclusions =        0
+  
+ CHARMM>     
+  
+ CHARMM>    IC PARAMETERS
+  
+ CHARMM>    IC SEED 1 N 1 CA 1 C
+  
+ CHARMM>    IC BUILD
+ ALL POSSIBLE COORDINATES HAVE BEEN PLACED
+  
+ CHARMM>     
+  
+ CHARMM>    OPEN WRITE UNIT 13 CARD NAME LOOPH.PDB
+ VOPEN> Attempting to open-WRITE  UNIT= 13 as FORMATTED   file ::looph.pdb::
+ OPNLGU> Unit 13 opened for WRITE access to looph.pdb
+  
+ CHARMM>    WRITE COOR PDB UNIT 13
+ RDTITL>  
+ RDTITL> No title read.
+  
+ CHARMM>     
+  
+ CHARMM>    STOP
+ VCLOSE: Unit   5 was not closed
+ VCLOSE: Closing unit   13 with status "KEEP"
+
+                    NORMAL TERMINATION BY NORMAL STOP
+                    MAXIMUM STACK SPACE USED IS   33900
+                    STACK CURRENTLY IN USE IS         0
+                    MOST SEVERE WARNING WAS AT LEVEL  1
+                    HEAP PRINTOUT-  HEAP SIZE   2048000
+                    SPACE CURRENTLY IN USE IS         0
+                    MAXIMUM SPACE USED IS          2430
+                    FREE LIST
+            PRINHP> ADDRESS:         1 LENGTH:   2048000 NEXT:         0
+
+                    $$$$$ JOB ACCOUNTING INFORMATION $$$$$
+                     ELAPSED TIME:     5.00  SECONDS 
+                         CPU TIME:     0.26  SECONDS 
